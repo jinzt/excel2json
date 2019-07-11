@@ -81,7 +81,7 @@ python excel2json.py config.xlsx
 excel2json.exe config.xlsx
 ```
 
-每次输入命令进行转换比较繁琐，这里使用windos批处理来优化，新建一个 convert.bat 文件，内容如下:
+每次输入命令进行转换比较繁琐，这里使用windows批处理来优化，新建一个 convert.bat 文件，内容如下:
 ```
 @echo off
 
@@ -212,4 +212,5 @@ pyinstaller -F excel2json.py
 这样会在dist目录生成 excel2json.exe 可执行文件了
 
 
-
+## star
+欢迎star，个人博客 [https://jinzt.github.io](https://jinzt.github.io)
