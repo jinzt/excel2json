@@ -25,7 +25,7 @@ ANY是任意类型，它可以是其它5种类型的任意一种，仅适用于k
 
 **key:array** 是数组结构，它有多个列，每个列属性类型一样，所有列构成一个字典对象，作为数组的一条记录
 ,配置表示例如下
-![key:array](/images/3.png)
+![key:array](/images/2.png)
 
 导出 test_key_array_s.json 如下:
 ```json
@@ -38,7 +38,7 @@ ANY是任意类型，它可以是其它5种类型的任意一种，仅适用于k
 
 **key:map** 是字典结构，它有多个列，每个列属性类型一样，第一列作为字典的key并且只能是string类型
 ,配置表示例如下
-![key:map](/images/2.png)
+![key:map](/images/3.png)
 
 导出 test_key_map_s.json 如下:
 ```json
