@@ -1,13 +1,23 @@
 {
-	"KEY_INT":100,
-	"KEY_FLOAT":0.23,
-	"KEY_BOOL":true,
-	"KEY_OBJECT_ARRAY":[10,20],
-	"KEY_OBJECT_DICT":{"Ratio":1, "Base":10000},
-	"KEY_STRING":"string test",
-	"KEY_STRING_INT":"100",
-	"KEY_STRING_FLOAT":"0.23",
-	"KEY_STRING_BOOL":"true",
-	"KEY_STRING_OBJECT_ARRAY":"[10,20]",
-	"KEY_STRING_OBJECT_DICT":"\"{\"Ratio\":1, \"Base\":10000}\""
+    "KEY_INT": 100, 
+    "KEY_FLOAT": 0.23, 
+    "KEY_BOOL": true, 
+    "KEY_OBJECT_ARRAY": [
+        {
+            "Name": "jzt1"
+        }, 
+        {
+            "Name": "jzt2"
+        }
+    ], 
+    "KEY_OBJECT_DICT": {
+        "Ratio": 1, 
+        "Base": 10000
+    }, 
+    "KEY_STRING": "string test", 
+    "KEY_STRING_INT": "100", 
+    "KEY_STRING_FLOAT": "0.23", 
+    "KEY_STRING_BOOL": "true", 
+    "KEY_STRING_OBJECT_ARRAY": "[10,20]", 
+    "KEY_STRING_OBJECT_DICT": "[10,20]"
 }

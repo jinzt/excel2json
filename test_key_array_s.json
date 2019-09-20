@@ -1,5 +1,41 @@
 [
-	{ "ID":100, "Ratio":0.6, "Reward":[2,3,4], "TaxRatio":{"Ratio":1, "Base":10000} },
-	{ "ID":101, "Ratio":0.7, "Reward":[3,5,7], "TaxRatio":{"Ratio":1, "Base":10000} },
-	{ "ID":102, "Ratio":0.5, "Reward":[10,15,20], "TaxRatio":{"Ratio":1, "Base":1000} }
+    {
+        "ID": 101, 
+        "Ratio": 0.7, 
+        "Reward": [
+            3, 
+            5, 
+            7
+        ], 
+        "TaxRatio": {
+            "Ratio": 1, 
+            "Base": 10000
+        }
+    }, 
+    {
+        "ID": 102, 
+        "Ratio": 0.5, 
+        "Reward": [
+            10, 
+            15, 
+            20
+        ], 
+        "TaxRatio": {
+            "Ratio": 1, 
+            "Base": 1000
+        }
+    }, 
+    {
+        "ID": 103, 
+        "Ratio": 0.8, 
+        "Reward": [
+            10, 
+            15, 
+            20
+        ], 
+        "TaxRatio": {
+            "Ratio": 1, 
+            "Base": 1000
+        }
+    }
 ]

@@ -1,5 +1,46 @@
 [
-	{ "ID":100, "Ratio":0.6, "Reward":[2,3,4], "Open":false, "Desc":"23" },
-	{ "ID":101, "Ratio":0.7, "Reward":[3,5,7], "Open":true, "Desc":"2.33" },
-	{ "ID":102, "Ratio":0.5, "Reward":[10,15,20], "Open":false, "Desc":"金宝箱" }
+    {
+        "ID": 100, 
+        "Ratio": 0.6, 
+        "Reward": [
+            2, 
+            3, 
+            4
+        ], 
+        "Open": true, 
+        "Desc": "23"
+    }, 
+    {
+        "ID": 101, 
+        "Ratio": 0.7, 
+        "Reward": [
+            3, 
+            5, 
+            7
+        ], 
+        "Open": true, 
+        "Desc": "2.33"
+    }, 
+    {
+        "ID": 102, 
+        "Ratio": 0.5, 
+        "Reward": [
+            10, 
+            15, 
+            20
+        ], 
+        "Open": true, 
+        "Desc": "金宝箱"
+    }, 
+    {
+        "ID": 103, 
+        "Ratio": 0.8, 
+        "Reward": [
+            10, 
+            15, 
+            20
+        ], 
+        "Open": false, 
+        "Desc": "金宝箱"
+    }
 ]

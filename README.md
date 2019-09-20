@@ -64,8 +64,7 @@ ANY是任意类型，它可以是其它5种类型的任意一种，仅适用于k
 	"KEY_STRING_INT":"100",
 	"KEY_STRING_FLOAT":"0.23",
 	"KEY_STRING_BOOL":"true",
-	"KEY_STRING_OBJECT_ARRAY":"[10,20]",
-	"KEY_STRING_OBJECT_DICT":"\"{\"Ratio\":1, \"Base\":10000}\""
+	"KEY_STRING_OBJECT_ARRAY":"[10,20]"
 }
 ```
 

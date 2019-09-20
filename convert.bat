@@ -6,8 +6,9 @@
 @echo off
 
 :: delete all *.json
-echo del all *.json
+echo del all *.json *.lua
 del /s *.json
+del /s *.lua
 
 :: covert config
 excel2json.exe config.xlsx
