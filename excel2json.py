@@ -55,7 +55,7 @@ def obj_to_lua_str(data, layer=0):
 			if type(k) is types.IntType:
 				lua_str += '[' + str(k) + ']'
 			else:
-				lua_str += k 
+				lua_str += '["' + str(k) + '"]'
 			lua_str += ' = '
 			try:
 				lua_str += dic_to_lua_str(v,layer +1)
@@ -111,7 +111,7 @@ def dic_to_lua_str(data,layer=0):
 			if type(k) is types.IntType:
 				lua_str += '[' + str(k) + ']'
 			else:
-				lua_str += k 
+				lua_str += '["' + str(k) + '"]'
 			lua_str += ' = '
 			try:
 				lua_str += dic_to_lua_str(v,layer +1)
@@ -365,6 +365,8 @@ def table2array(table, filename, suffix, filter, mapTable, desc):
 				key = table.cell_value(0,c)
 				value = table.cell_value(r,c)
 				dic[key] = value
+				
+
 			if (eval(filter,{},dic)) == False:
 				continue
 
@@ -449,7 +451,7 @@ def table2map(table, filename, suffix, filter, mapTable, desc):
 		else:
 			keyValue = str(keyValue)
 
-		strTmp = u"\t\""+keyValue + "\": { "
+		strTmp = u"\t\""+str(keyValue) + "\": { "
 
 		# 过滤不需要的行
 		if len(filter) > 0:
