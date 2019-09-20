@@ -1,7 +1,7 @@
 [
     {
         "ID": 100, 
-        "Ratio": 0.6, 
+        "Ratio": null, 
         "Reward": [
             2, 
             3, 
@@ -13,11 +13,7 @@
     {
         "ID": 101, 
         "Ratio": 0.7, 
-        "Reward": [
-            3, 
-            5, 
-            7
-        ], 
+        "Reward": null, 
         "Open": true, 
         "Desc": "2.33"
     }, 

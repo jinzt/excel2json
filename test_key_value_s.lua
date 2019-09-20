@@ -1,4 +1,4 @@
-
+return 
 {
 	KEY_STRING_FLOAT = '0.23',
 	KEY_STRING_BOOL = 'true',
