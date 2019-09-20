@@ -1,5 +1,4 @@
-return 
-{
+return {
 	KEY_STRING_FLOAT = '0.23',
 	KEY_STRING_BOOL = 'true',
 	KEY_OBJECT_ARRAY = {
@@ -11,7 +10,7 @@ return
 			Name = 'jzt2'
 		}
 	},
-	KEY_STRING = 'string test',
+	KEY_STRING = 'string test\n',
 	KEY_FLOAT = 0.23,
 	KEY_INT = 100,
 	KEY_STRING_INT = '100',
@@ -22,5 +21,5 @@ return
 		Ratio = 1
 	},
 	KEY_BOOL = true,
-	KEY_STRING_OBJECT_DICT = '[10,20]'
+	KEY_STRING_OBJECT_DICT = '{"Ratio":1,"Base":1000}'
 }

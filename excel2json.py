@@ -30,7 +30,7 @@ def space_str(layer):
 	return lua_str
 
 
-def arr_to_lua_str(data, layer=0):
+def obj_to_lua_str(data, layer=0):
 	d_type = type(data)
 	if d_type is types.ListType:
 		lua_str = "{\n"
@@ -44,13 +44,40 @@ def arr_to_lua_str(data, layer=0):
 		lua_str += space_str(layer)
 		lua_str +=	'}'
 		return lua_str	
+	elif d_type is types.DictType:
+		lua_str = ''
+		lua_str += "{\n"
+		data_len = len(data)
+		data_count = 0
+		for k,v in data.items():
+			data_count += 1
+			lua_str += space_str(layer+1)
+			if type(k) is types.IntType:
+				lua_str += '[' + str(k) + ']'
+			else:
+				lua_str += k 
+			lua_str += ' = '
+			try:
+				lua_str += dic_to_lua_str(v,layer +1)
+				if data_count < data_len:
+					lua_str += ',\n'
+
+			except Exception, e:
+				print 'error in ',k,v
+				raise
+		lua_str += '\n'
+		lua_str += space_str(layer)
+		lua_str += '}'
+		return lua_str
 	else:
 		print d_type , 'is error'
 		return None
 
 def dic_to_lua_str(data,layer=0):
 	d_type = type(data)
-	if	d_type is types.StringTypes or d_type is str or d_type is types.UnicodeType:
+	if d_type is types.NoneType:
+		return 'nil'
+	elif d_type is types.StringTypes or d_type is str or d_type is types.UnicodeType:
 		return "'" + data + "'"
 	elif d_type is types.BooleanType:
 		if data:
@@ -117,10 +144,16 @@ class DataType(Enum):
 
 def IsJson(strValue):
 	try:
-		json.loads(strValue, encoding='utf-8')
+		obj = json.loads(strValue, encoding='utf-8')
+		d_type = type(obj)
+		if d_type is types.ListType:
+			return True
+		elif d_type is types.DictType:
+			return True
+		return False	 
 	except ValueError:
 		return False
-	return True
+	return False
 
 def IsInt(strValue):
 	try:
@@ -250,9 +283,11 @@ def IsEmptyLine(paramTable, paramRow, paramFieldCount):
 
 # 数据解析
 def DealData(dataType, data):
+	if data == "null":
+		return True, data
+
 	ok = False
 	strValue = u""
-
 	if dataType == DataType.INT:
 		# 这里读进来的整形 带.0
 		if type(data) != float:
@@ -277,9 +312,9 @@ def DealData(dataType, data):
 			data = FloatToString(data)
 		if type(data) != unicode:
 			return ok, strValue
-		strValue = data.replace(u"\\", u"\\\\").replace(u"\"", u"\\\"")
-		strValue = strValue.replace(u"\n", u"")
-		strValue = "\""+ strValue + u"\""
+		#strValue = data.replace(u"\\", u"\\\\").replace(u"\"", u"\\\"")
+		#strValue = strValue.replace(u"\n", u"")
+		strValue = "\""+ data + u"\""
 	elif dataType == DataType.OBJECT:
 		obj = data.replace(u"\\", u"")
 		if IsJson(obj) == False:
@@ -298,12 +333,12 @@ def DealData(dataType, data):
 				break
 			ok, strValue = DealData(DataType.OBJECT, data)
 			if ok == True:
-				break
-			ok, strValue = DealData(DataType.STRING, data)
-			if ok == True:
-				break
-
-			return ok, strValue
+				break	
+			#ok, strValue = DealData(DataType.STRING, data)
+			#if ok == True:
+			#	break
+			#return ok, strValue
+			return True, data
 	else:
 		return ok, strValue
 
@@ -383,13 +418,13 @@ def table2array(table, filename, suffix, filter, mapTable, desc):
 		os.makedirs(dir)	
 	f = codecs.open(filename,"w","utf-8")
 	if suffix == ".json":
-		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4))
+		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4).replace(u"\\\\", u"\\"))
 	elif suffix == ".lua":
 		if len(desc) > 0:
 			f.write("--[[\n")
 			f.write(str(desc))
 			f.write("\n]]--\n")
-		f.write("return " + arr_to_lua_str(json.loads(json_str)))
+		f.write("return " + obj_to_lua_str(json.loads(json_str)))
 	f.close()
 	print "Create ",filename," OK"
 	return
@@ -475,13 +510,13 @@ def table2map(table, filename, suffix, filter, mapTable, desc):
 		os.makedirs(dir)	
 	f = codecs.open(filename,"w","utf-8")
 	if suffix == ".json":
-		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4))
+		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4).replace(u"\\\\", u"\\"))
 	elif suffix == ".lua":
 		if len(desc) > 0:
 			f.write("--[[\n")
 			f.write(str(desc))
 			f.write("\n]]--\n")
-		f.write("return " + dic_to_lua_str(json.loads(json_str)))
+		f.write("return " + obj_to_lua_str(json.loads(json_str)))
 	f.close()
 	print "Create ",filename," OK"
 	return
@@ -539,7 +574,6 @@ def table2keyvalue(table, filename, suffix, filter, mapTable, desc):
 
 			# 取数据
 			data = table.cell_value(r,c)
-
 			# 数据校验转换
 			ok, strValue = DealData(dataType, data)
 			if ok == False:
@@ -567,13 +601,13 @@ def table2keyvalue(table, filename, suffix, filter, mapTable, desc):
 		os.makedirs(dir)	
 	f = codecs.open(filename,"w","utf-8")
 	if suffix == ".json":
-		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4))
+		f.write(json.dumps(json.loads(json_str,	 object_pairs_hook=OrderedDict),ensure_ascii=False,indent=4).replace(u"\\\\", u"\\"))
 	elif suffix == ".lua":
 		if len(desc) > 0:
 			f.write("--[[\n")
 			f.write(str(desc))
 			f.write("\n]]--\n")
-		f.write("return " + dic_to_lua_str(json.loads(json_str)))
+		f.write("return " + obj_to_lua_str(json.loads(json_str)))
 	f.close()
 	print "Create ",filename," OK"
 	return

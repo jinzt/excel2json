@@ -1,12 +1,12 @@
 {
     "test001": {
         "Key": "test001", 
-        "Name": "zhangsan", 
+        "Name": "\t\tzhangsan\n", 
         "Age": 18
     }, 
     "test002": {
         "Key": "test002", 
-        "Name": "lisi", 
+        "Name": "{\"Ratio\":1,\"Base\":1000}", 
         "Age": 19
     }
 }
