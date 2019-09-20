@@ -1,18 +1,5 @@
 [
     {
-        "ID": 100, 
-        "Ratio": null, 
-        "Reward": [
-            2, 
-            3, 
-            4
-        ], 
-        "TaxRatio": {
-            "Ratio": 1, 
-            "Base": 1000
-        }
-    }, 
-    {
         "ID": 101, 
         "Ratio": 0.7, 
         "Reward": null, 

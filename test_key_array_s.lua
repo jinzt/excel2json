@@ -6,18 +6,6 @@ return {
 	{
 		TaxRatio = 
 		{
-			Base = 1000,
-			Ratio = 1
-		},
-		Reward = {
-			[1] = 2,[2] = 3,[3] = 4
-		},
-		Ratio = nil,
-		ID = 100
-	},[2] = 
-	{
-		TaxRatio = 
-		{
 			Base = nil,
 			Ratio = 1
 		},
